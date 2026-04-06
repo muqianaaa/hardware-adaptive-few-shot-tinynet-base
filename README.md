@@ -7,7 +7,7 @@ This repository contains the code and firmware used for hardware-adaptive few-sh
 The repository is organized around three parts:
 
 - TinyNet-Base definition and search-space encoding;
-- hardware-conditioned few-shot adaptation for unseen MCUs;
+- hardware-conditioned few-shot adaptation for unknown MCUs;
 - evaluation on synthetic MCUs and a real `STM32F405RGT6` board.
 
 ![Workflow overview](docs/figures/fig1_workflow_overview.jpg)
