@@ -1,22 +1,30 @@
 # Hardware-Adaptive Few-Shot TinyNet-Base for Unknown MCUs
 
-Clean open-source release of the core code for few-shot meta-learned TinyNet-Base parameter generation on unknown MCUs.
+This repository contains the code and firmware used for hardware-adaptive few-shot deployment of TinyNet-Base models on unknown MCUs. It covers synthetic device construction, hardware-conditioned meta-learning, support-set collection on a real `STM32F405RGT6` board, and the benchmark and ablation procedures reported in the paper.
 
-This repository contains the minimal code and firmware needed to reproduce the main workflow in the paper:
+## Overview
 
-- synthetic MCU dataset construction and model training;
-- hardware-conditioned meta-learning and few-shot adaptation;
-- real-board support collection on `STM32F405RGT6`;
-- five-device benchmark and ablation evaluation.
+The repository is organized around three parts:
 
-Paper drafts, Word exports, temporary plotting scripts, and generated result artifacts are intentionally excluded.
+- TinyNet-Base definition and search-space encoding;
+- hardware-conditioned few-shot adaptation for unseen MCUs;
+- evaluation on synthetic MCUs and a real `STM32F405RGT6` board.
 
-## Highlights
+![Workflow overview](docs/figures/workflow_overview.png)
 
-- Unified TinyNet-Base search space with searchable block type, width, depth, and bitwidth.
-- Hardware modeling from static features, micro-operator probes, and reference-network probes.
-- Few-shot device adaptation for unknown MCUs through hardware-conditioned meta-learning.
-- Real-board integration through a UART JSONL benchmark runner on `STM32F405RGT6`.
+## Representative figures
+
+Final TinyNet-Base configurations selected on the five test MCUs:
+
+![Final configurations](docs/figures/final_configurations.png)
+
+Per-device comparison of the benchmark methods:
+
+![Benchmark results](docs/figures/benchmark_results.png)
+
+Per-device ablation results:
+
+![Ablation results](docs/figures/ablation_results.png)
 
 ## Repository structure
 
@@ -32,7 +40,9 @@ Paper drafts, Word exports, temporary plotting scripts, and generated result art
 |  |- unit/                          unit tests
 |  `- integration/                   integration tests
 |- firmware/stm32f405_runner/        STM32F405RGT6 UART benchmark runner
-|- docs/                             workflow notes
+|- docs/
+|  |- figures/                       workflow and result figures
+|  `- *.md                           workflow notes
 |- data/                             local generated artifacts (created at runtime)
 |- pyproject.toml
 |- requirements.txt

@@ -1,5 +1,5 @@
 cff-version: 1.2.0
-message: "If you use this repository, please cite it using the metadata below."
+message: "Please cite this repository using the metadata below."
 title: "Hardware-Adaptive Few-Shot TinyNet-Base for Unknown MCUs"
 type: software
 authors:
@@ -10,6 +10,7 @@ date-released: 2026-04-06
 license: "MIT"
 repository-code: "https://github.com/muqianaaa/hardware-adaptive-few-shot-tinynet-base"
 abstract: >-
-  Open-source release of a few-shot hardware-conditioned TinyNet-Base pipeline
-  for deployment on unknown MCUs, including synthetic device generation,
-  meta-learning, real-board support collection, and STM32F405RGT6 firmware.
+  Code and firmware for hardware-adaptive few-shot deployment of TinyNet-Base
+  models on unknown MCUs, including synthetic device generation,
+  hardware-conditioned meta-learning, support-set collection on a real
+  STM32F405RGT6 board, and benchmark and ablation evaluation.
