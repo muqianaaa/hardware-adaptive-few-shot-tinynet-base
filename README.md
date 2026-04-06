@@ -10,21 +10,21 @@ The repository is organized around three parts:
 - hardware-conditioned few-shot adaptation for unseen MCUs;
 - evaluation on synthetic MCUs and a real `STM32F405RGT6` board.
 
-![Workflow overview](docs/figures/workflow_overview.png)
+![Workflow overview](docs/figures/fig1_workflow_overview.svg)
 
 ## Representative figures
 
 Final TinyNet-Base configurations selected on the five test MCUs:
 
-![Final configurations](docs/figures/final_configurations.png)
+![Final configurations](docs/figures/fig3_final_configurations.svg)
 
 Per-device comparison of the benchmark methods:
 
-![Benchmark results](docs/figures/benchmark_results.png)
+![Benchmark results](docs/figures/fig4_benchmark_results.svg)
 
 Per-device ablation results:
 
-![Ablation results](docs/figures/ablation_results.png)
+![Ablation results](docs/figures/fig5_ablation_results.svg)
 
 ## Repository structure
 
