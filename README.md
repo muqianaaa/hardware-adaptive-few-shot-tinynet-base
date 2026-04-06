@@ -26,7 +26,7 @@ The repository is organized around three parts:
 
 Final TinyNet-Base configurations selected on the five test MCUs:
 
-![Final configurations](docs/figures/fig3_final_configurations.png)
+![Final configurations](docs/figures/fig3_final_configurations.jpg)
 
 Per-device comparison of the benchmark methods:
 
