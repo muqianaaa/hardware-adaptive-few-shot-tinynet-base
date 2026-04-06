@@ -1,4 +1,4 @@
-# Few-Shot TinyNet-Base for Unknown MCUs
+# Hardware-Adaptive Few-Shot TinyNet-Base for Unknown MCUs
 
 Clean open-source release of the core code for few-shot meta-learned TinyNet-Base parameter generation on unknown MCUs.
 

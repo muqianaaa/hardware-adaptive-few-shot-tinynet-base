@@ -1,6 +1,6 @@
 cff-version: 1.2.0
 message: "If you use this repository, please cite it using the metadata below."
-title: "Few-Shot TinyNet-Base for Unknown MCUs"
+title: "Hardware-Adaptive Few-Shot TinyNet-Base for Unknown MCUs"
 type: software
 authors:
   - family-names: "Contributors"
@@ -8,7 +8,7 @@ authors:
 version: "0.1.0"
 date-released: 2026-04-06
 license: "MIT"
-repository-code: "https://github.com/<your-account>/<your-repo>"
+repository-code: "https://github.com/muqianaaa/hardware-adaptive-few-shot-tinynet-base"
 abstract: >-
   Open-source release of a few-shot hardware-conditioned TinyNet-Base pipeline
   for deployment on unknown MCUs, including synthetic device generation,
