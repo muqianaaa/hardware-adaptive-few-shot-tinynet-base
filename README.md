@@ -10,21 +10,31 @@ The repository is organized around three parts:
 - hardware-conditioned few-shot adaptation for unseen MCUs;
 - evaluation on synthetic MCUs and a real `STM32F405RGT6` board.
 
-![Workflow overview](docs/figures/fig1_workflow_overview.svg)
+![Workflow overview](docs/figures/fig1_workflow_overview.jpg)
 
-## Representative figures
+## Main entry points
+
+- `src/fewshot_hc_nas/search_space.py`: TinyNet-Base search space and architecture encoding
+- `src/fewshot_hc_nas/pipeline_core.py`: training, adaptation, deployment, and evaluation flow
+- `src/fewshot_hc_nas/backends.py`: synthetic-device replay backend and real-board command backend
+- `scripts/run_stage.py`: stage runner for the main pipeline
+- `configs/eval/experiment_synthetic_cifar10.yaml`: end-to-end synthetic MCU experiment
+- `configs/eval/board_benchmark_synthetic_cifar10_with_real_stm32f405rgt6.yaml`: five-device benchmark
+- `firmware/stm32f405_runner/`: STM32F405RGT6 benchmark firmware
+
+## Figures
 
 Final TinyNet-Base configurations selected on the five test MCUs:
 
-![Final configurations](docs/figures/fig3_final_configurations.svg)
+![Final configurations](docs/figures/fig3_final_configurations.png)
 
 Per-device comparison of the benchmark methods:
 
-![Benchmark results](docs/figures/fig4_benchmark_results.svg)
+![Benchmark results](docs/figures/fig4_benchmark_results.jpg)
 
 Per-device ablation results:
 
-![Ablation results](docs/figures/fig5_ablation_results.svg)
+![Ablation results](docs/figures/fig5_ablation_results.jpg)
 
 ## Repository structure
 
