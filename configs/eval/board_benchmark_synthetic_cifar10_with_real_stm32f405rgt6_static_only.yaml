@@ -1,0 +1,65 @@
+﻿seed: 42
+dataset_name: synthetic_cifar10
+data_root: data
+device: cuda
+backend: hybrid_command_csv_replay
+command_backend_config: configs/hardware/stm32f405rgt6_uart.yaml
+command_devices:
+  - stm32f405rgt6_000
+methods:
+  - few_shot
+device_split: test
+max_devices: 5
+device_names:
+  - low_memory_mcu_000
+  - memory_bottleneck_mcu_000
+  - depthwise_unfriendly_mcu_000
+  - low_bit_friendly_mcu_001
+  - stm32f405rgt6_000
+support_size: 8
+adapt_steps: 36
+adapt_lr: 0.01
+allow_support_candidates: false
+include_task_only_exploration: false
+strict_article_flow: true
+population_size: 128
+rounds: 96
+random_trials: 512
+refine_radius: 2
+standard_baseline_name: standard_cnn
+topk_measure: 32
+ablation_mode: static_only
+bundle_filename: hardware_model_bundle_static_only.pt
+output_subdir: board_benchmark_static_only
+debug_subdir: board_benchmark_static_only_debug
+allowed_quants:
+  - 2
+  - 4
+  - 8
+budget_profiles:
+  low_memory_mcu_000:
+    latency_scale: 0.88
+    sram_scale: 0.62
+    flash_scale: 0.60
+    dominant_dims: [M]
+  memory_bottleneck_mcu_000:
+    latency_scale: 0.92
+    sram_scale: 0.56
+    flash_scale: 0.72
+    dominant_dims: [M, T]
+  depthwise_unfriendly_mcu_000:
+    latency_scale: 0.68
+    sram_scale: 0.90
+    flash_scale: 0.80
+    dominant_dims: [T]
+  low_bit_friendly_mcu_001:
+    latency_scale: 0.84
+    sram_scale: 0.82
+    flash_scale: 0.40
+    dominant_dims: [F]
+  stm32f405rgt6_000:
+    latency_scale: 0.30
+    sram_scale: 0.82
+    flash_scale: 0.48
+    dominant_dims: [T, F]
+

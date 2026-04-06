@@ -1,0 +1,8 @@
+seed: 42
+dataset_name: synthetic_cifar10
+train_per_family: 6
+val_per_family: 3
+test_per_family: 3
+num_architectures: 384
+measurement_noise_scale: 0.02
+budgets_per_device: 6

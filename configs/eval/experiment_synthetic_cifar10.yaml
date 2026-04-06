@@ -1,0 +1,200 @@
+﻿prepare_data:
+  seed: 42
+  dataset_name: synthetic_cifar10
+  data_root: data
+  val_size: 1000
+  force_synthetic: true
+
+train_supernet:
+  seed: 42
+  dataset_name: synthetic_cifar10
+  data_root: data
+  val_size: 1000
+  force_synthetic: true
+  device: cuda
+  batch_size: 64
+  epochs: 6
+  lr: 0.001
+  limit_train_batches: 200
+  limit_val_batches: 40
+
+build_accuracy_dataset:
+  seed: 42
+  dataset_name: synthetic_cifar10
+  data_root: data
+  val_size: 1000
+  force_synthetic: true
+  device: cuda
+  batch_size: 128
+  num_architectures: 768
+  limit_val_batches: 40
+  accuracy_label_mode: auto
+  accuracy_oracle_weight: 0.85
+  predictor_lr: 0.001
+  predictor_batch_size: 128
+  predictor_epochs: 70
+
+build_synth_devices:
+  seed: 42
+  dataset_name: synthetic_cifar10
+  train_per_family: 6
+  val_per_family: 3
+  test_per_family: 3
+  num_architectures: 384
+  budgets_per_device: 6
+
+train_hardware_models:
+  seed: 42
+  dataset_name: synthetic_cifar10
+  device: cuda
+  epochs: 60
+  batch_size: 128
+  lr: 0.001
+  blackbox_lr: 0.001
+  response_epochs: 36
+  row_epochs: 24
+  meta_episodes: 72
+  support_size: 10
+  query_size: 32
+  adapt_steps: 10
+  adapt_lr: 0.006
+
+experiment_suite:
+  dataset_name: synthetic_cifar10
+  support_sizes:
+    - 2
+    - 4
+    - 8
+    - 16
+  main_eval:
+    seed: 42
+    device: cuda
+    dataset_name: synthetic_cifar10
+    device_split: test
+    max_devices: 4
+    representative_families:
+      - low_memory_mcu
+      - memory_bottleneck_mcu
+      - depthwise_unfriendly_mcu
+      - low_bit_friendly_mcu
+    support_size: 10
+    query_size: 32
+    adapt_steps: 36
+    adapt_lr: 0.01
+    allow_support_candidates: true
+    population_size: 128
+    rounds: 96
+    random_trials: 512
+    topk_measure: 32
+    family_budget_profiles:
+      low_memory_mcu:
+        latency_scale: 0.88
+        sram_scale: 0.62
+        flash_scale: 0.60
+        dominant_dims: [M]
+      memory_bottleneck_mcu:
+        latency_scale: 0.92
+        sram_scale: 0.56
+        flash_scale: 0.72
+        dominant_dims: [M, T]
+      depthwise_unfriendly_mcu:
+        latency_scale: 0.68
+        sram_scale: 0.90
+        flash_scale: 0.80
+        dominant_dims: [T]
+      low_bit_friendly_mcu:
+        latency_scale: 0.84
+        sram_scale: 0.82
+        flash_scale: 0.40
+        dominant_dims: [F]
+    methods:
+      - few_shot
+      - zero_shot
+      - hardware_agnostic
+      - random_search
+      - blackbox_cost_mlp
+  ablations:
+    - no_probes
+    - no_refs
+    - static_only
+    - no_response
+    - no_calibration
+    - no_adaptation
+    - no_local_refine
+  ablation_methods:
+    - few_shot
+  loss_ablation_train_base:
+    seed: 42
+    dataset_name: synthetic_cifar10
+    device: cuda
+    batch_size: 128
+    lr: 0.001
+    blackbox_lr: 0.001
+    response_epochs: 36
+    row_epochs: 24
+    meta_episodes: 56
+    support_size: 10
+    query_size: 32
+    adapt_steps: 10
+    adapt_lr: 0.006
+  loss_ablations:
+    - name: no_feasibility_loss
+      train_overrides:
+        row_feasible_weight: 0.0
+        meta_feasible_weight: 0.0
+    - name: no_generator_loss
+      train_overrides:
+        generator_loss_weight: 0.0
+    - name: no_response_aux_loss
+      train_overrides:
+        response_aux_weight: 0.0
+
+benchmark_new_boards:
+  seed: 42
+  dataset_name: synthetic_cifar10
+  data_root: data
+  device: cpu
+  device_split: test
+  max_devices: 4
+  representative_families:
+    - low_memory_mcu
+    - memory_bottleneck_mcu
+    - depthwise_unfriendly_mcu
+    - low_bit_friendly_mcu
+  support_size: 10
+  adapt_steps: 36
+  adapt_lr: 0.01
+  allow_support_candidates: true
+  population_size: 128
+  rounds: 96
+  random_trials: 512
+  topk_measure: 32
+  standard_baseline_name: standard_cnn
+  measurement_noise_scale: 0.0
+  accuracy_mode: oracle
+  accuracy_batch_size: 128
+  accuracy_limit_batches: 20
+  val_size: 1000
+  force_synthetic: true
+  family_budget_profiles:
+    low_memory_mcu:
+      latency_scale: 0.88
+      sram_scale: 0.62
+      flash_scale: 0.60
+      dominant_dims: [M]
+    memory_bottleneck_mcu:
+      latency_scale: 0.92
+      sram_scale: 0.56
+      flash_scale: 0.72
+      dominant_dims: [M, T]
+    depthwise_unfriendly_mcu:
+      latency_scale: 0.68
+      sram_scale: 0.90
+      flash_scale: 0.80
+      dominant_dims: [T]
+    low_bit_friendly_mcu:
+      latency_scale: 0.84
+      sram_scale: 0.82
+      flash_scale: 0.40
+      dominant_dims: [F]
+

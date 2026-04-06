@@ -1,0 +1,17 @@
+﻿seed: 42
+dataset_name: synthetic_cifar10
+device: cpu
+backend: command
+command_backend_config: configs/hardware/stm32f405rgt6_uart.yaml
+device_dir: data/generated/synthetic_cifar10/devices/real/stm32f405rgt6_000
+support_size: 8
+support_seed_count: 24
+budgets_per_device: 6
+force_refresh_board_cache: true
+allowed_quants:
+  - 2
+  - 4
+  - 8
+register_in_manifest: true
+manifest_split: test
+

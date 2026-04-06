@@ -1,0 +1,7 @@
+numpy>=2.1.0
+pandas>=2.2.0
+pyyaml>=6.0
+matplotlib>=3.9.0
+torch>=2.1.0
+pyserial>=3.5
+pytest>=8.0.0

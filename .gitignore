@@ -1,0 +1,26 @@
+# Python
+__pycache__/
+*.pyc
+.pytest_cache/
+.venv/
+venv/
+
+# Generated experiment artifacts
+data/generated/
+data/checkpoints/
+data/raw/
+data/intermediate/
+
+# Local IDE state
+.vscode/
+.idea/
+
+# Firmware build outputs
+firmware/stm32f405_runner/MDK-ARM/AI_Proc/
+firmware/stm32f405_runner/MDK-ARM/*.uvguix*
+firmware/stm32f405_runner/MDK-ARM/build_output.txt
+firmware/stm32f405_runner/MDK-ARM/flash_output.txt
+
+# OS files
+Thumbs.db
+Desktop.ini

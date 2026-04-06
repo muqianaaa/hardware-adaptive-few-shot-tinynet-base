@@ -1,0 +1,25 @@
+﻿seed: 42
+dataset_name: synthetic_cifar10
+device: cuda
+backend: command
+command_backend_config: configs/hardware/stm32f405rgt6_uart.yaml
+device_dir: data/generated/synthetic_cifar10/devices/real/stm32f405rgt6_000
+support_size: 8
+adapt_steps: 36
+adapt_lr: 0.01
+allow_support_candidates: false
+include_task_only_exploration: false
+strict_article_flow: true
+population_size: 128
+rounds: 96
+topk_measure: 32
+refine_radius: 2
+allowed_quants:
+  - 2
+  - 4
+  - 8
+budget:
+  t_max_ms: 50.0
+  m_max_bytes: 120000
+  f_max_bytes: 700000
+
