@@ -18,8 +18,12 @@ The repository is organized around three parts:
 - `src/fewshot_hc_nas/pipeline_core.py`: training, adaptation, deployment, and evaluation flow
 - `src/fewshot_hc_nas/backends.py`: synthetic-device replay backend and real-board command backend
 - `scripts/run_stage.py`: stage runner for the main pipeline
+- `scripts/summarize_kshot_support_size.py`: aggregate the `K=4/8/16` support-size study used in the paper
 - `configs/eval/experiment_synthetic_cifar10.yaml`: end-to-end synthetic MCU experiment
 - `configs/eval/board_benchmark_synthetic_cifar10_with_real_stm32f405rgt6.yaml`: five-device benchmark
+- `configs/eval/kshot_support_five_mcus_k4.yaml`: support-size validation at `K=4`
+- `configs/eval/kshot_support_five_mcus_k8.yaml`: support-size validation at `K=8`
+- `configs/eval/kshot_support_five_mcus_k16.yaml`: support-size validation at `K=16`
 - `firmware/stm32f405_runner/`: STM32F405RGT6 benchmark firmware
 
 ## Figures
@@ -138,6 +142,39 @@ python scripts/run_stage.py --stage benchmark_new_boards --config configs/eval/b
 python scripts/run_stage.py --stage benchmark_new_boards --config configs/eval/board_benchmark_synthetic_cifar10_with_real_stm32f405rgt6_no_feasibility_loss.yaml
 python scripts/run_stage.py --stage benchmark_new_boards --config configs/eval/board_benchmark_synthetic_cifar10_with_real_stm32f405rgt6_no_generator_loss.yaml
 python scripts/run_stage.py --stage benchmark_new_boards --config configs/eval/board_benchmark_synthetic_cifar10_with_real_stm32f405rgt6_no_response_aux_loss.yaml
+```
+
+### 6. Run the support-size validation used to select `K=8`
+
+The paper evaluates `K=4`, `K=8`, and `K=16` and uses `K=8` as the default setting in the main benchmark.
+
+Run the three support-size benchmarks:
+
+```bash
+python scripts/run_stage.py --stage benchmark_new_boards --config configs/eval/kshot_support_five_mcus_k4.yaml
+python scripts/run_stage.py --stage benchmark_new_boards --config configs/eval/kshot_support_five_mcus_k8.yaml
+python scripts/run_stage.py --stage benchmark_new_boards --config configs/eval/kshot_support_five_mcus_k16.yaml
+```
+
+Then aggregate the five-device averages:
+
+```bash
+python scripts/summarize_kshot_support_size.py
+```
+
+By default, the script writes:
+
+```text
+data/generated/synthetic_cifar10/kshot_support_size_summary.csv
+```
+
+If you already have the paper benchmark outputs and want to match the manuscript setting exactly, pass the benchmark used for the `K=8` row explicitly:
+
+```bash
+python scripts/summarize_kshot_support_size.py \
+  --k4 data/generated/synthetic_cifar10/board_benchmark_kshot_k4/selected_rows.csv \
+  --k8 data/generated/synthetic_cifar10/board_benchmark_paper_final/selected_rows.csv \
+  --k16 data/generated/synthetic_cifar10/board_benchmark_kshot_k16/selected_rows.csv
 ```
 
 ## Tests
