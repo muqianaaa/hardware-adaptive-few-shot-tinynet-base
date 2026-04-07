@@ -1,4 +1,4 @@
-﻿prepare_data:
+prepare_data:
   seed: 42
   dataset_name: synthetic_cifar10
   data_root: data
@@ -197,4 +197,3 @@ benchmark_new_boards:
       sram_scale: 0.82
       flash_scale: 0.40
       dominant_dims: [F]
-

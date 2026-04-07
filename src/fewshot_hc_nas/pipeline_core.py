@@ -53,7 +53,11 @@ def set_seed(seed: int) -> None:
 
 
 def get_device(requested: str | None = None) -> str:
-    return requested or ("cuda" if torch.cuda.is_available() else "cpu")
+    if requested:
+        if requested.startswith("cuda") and not torch.cuda.is_available():
+            return "cpu"
+        return requested
+    return "cuda" if torch.cuda.is_available() else "cpu"
 
 
 def _artifact_roots(root: str | Path, dataset_name: str) -> tuple[Path, Path]:

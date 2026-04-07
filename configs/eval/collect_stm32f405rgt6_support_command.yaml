@@ -1,4 +1,4 @@
-﻿seed: 42
+seed: 42
 dataset_name: synthetic_cifar10
 device: cpu
 backend: command
@@ -14,4 +14,3 @@ allowed_quants:
   - 8
 register_in_manifest: true
 manifest_split: test
-

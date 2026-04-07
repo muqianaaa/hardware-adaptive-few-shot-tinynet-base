@@ -1,4 +1,4 @@
-﻿seed: 42
+seed: 42
 dataset_name: synthetic_cifar10
 data_root: data
 device: cuda
@@ -32,6 +32,7 @@ ablation_mode: no_response_aux_loss
 bundle_filename: hardware_model_bundle_no_response_aux_loss.pt
 output_subdir: board_benchmark_no_response_aux_loss
 debug_subdir: board_benchmark_no_response_aux_loss_debug
+figure_tag: 去除硬件响应辅助监督项
 allowed_quants:
   - 2
   - 4
@@ -62,4 +63,3 @@ budget_profiles:
     sram_scale: 0.82
     flash_scale: 0.48
     dominant_dims: [T, F]
-

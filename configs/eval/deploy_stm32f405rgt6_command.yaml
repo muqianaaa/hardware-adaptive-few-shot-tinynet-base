@@ -1,4 +1,4 @@
-﻿seed: 42
+seed: 42
 dataset_name: synthetic_cifar10
 device: cuda
 backend: command
@@ -22,4 +22,3 @@ budget:
   t_max_ms: 50.0
   m_max_bytes: 120000
   f_max_bytes: 700000
-

@@ -1,6 +1,6 @@
-# Hardware-Adaptive Few-Shot TinyNet-Base for Unknown MCUs
+# A Few-Shot Hardware-Adaptive TinyNet-Base Method for Image Classification Deployment on Unknown MCUs
 
-This repository contains the code and firmware used for hardware-adaptive few-shot deployment of TinyNet-Base models on unknown MCUs. It covers synthetic device construction, hardware-conditioned meta-learning, support-set collection on a real `STM32F405RGT6` board, and the benchmark and ablation procedures reported in the paper.
+This repository contains the code and firmware used for few-shot hardware-adaptive deployment of TinyNet-Base models for image classification on unknown MCUs. It covers synthetic MCU profile construction, hardware-conditioned meta-learning, support-set collection on a real `STM32F405RGT6` board, and the benchmark and ablation procedures reported in the paper.
 
 ## Overview
 
@@ -8,7 +8,7 @@ The repository is organized around three parts:
 
 - TinyNet-Base definition and search-space encoding;
 - hardware-conditioned few-shot adaptation for unknown MCUs;
-- evaluation on synthetic MCUs and a real `STM32F405RGT6` board.
+- evaluation on four representative synthetic MCU profiles and a real `STM32F405RGT6` board.
 
 ![Workflow overview](docs/figures/fig1_workflow_overview.jpg)
 
@@ -125,6 +125,8 @@ python scripts/run_stage.py --stage deploy_new_device --config configs/eval/depl
 ```bash
 python scripts/run_stage.py --stage benchmark_new_boards --config configs/eval/board_benchmark_synthetic_cifar10_with_real_stm32f405rgt6.yaml
 ```
+
+In the paper, the four synthetic MCU profiles serve as the main controllable and reproducible evaluation targets. The real `STM32F405RGT6` board is used as external feasibility validation for the hardware-modeling and few-shot adaptation pipeline.
 
 In practice, the support-set size can be chosen within 4-16 according to the target-board measurement budget. Larger support sets usually provide more stable device characterization, while `K=8` is used as the unified default setting in the paper.
 

@@ -1,4 +1,4 @@
-﻿seed: 42
+seed: 42
 dataset_name: synthetic_cifar10
 data_root: data
 device: cuda
@@ -31,6 +31,7 @@ topk_measure: 32
 ablation_mode: full
 output_subdir: board_benchmark_ablation_full
 debug_subdir: board_benchmark_ablation_full_debug
+figure_tag: 模块消融完整方案
 allowed_quants:
   - 2
   - 4
@@ -61,4 +62,3 @@ budget_profiles:
     sram_scale: 0.82
     flash_scale: 0.48
     dominant_dims: [T, F]
-

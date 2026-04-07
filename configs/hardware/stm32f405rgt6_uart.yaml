@@ -12,3 +12,10 @@ supported_quants:
   - 2
   - 4
   - 8
+
+recover_command:
+  - D:\keil\UV4\UV4.exe
+  - -f
+  - D:\Desktop\第二篇论文\程序\AI_Proc_fewshot_runner\MDK-ARM\AI_Proc.uvprojx
+  - -o
+  - D:\Desktop\第二篇论文\程序\AI_Proc_fewshot_runner\MDK-ARM\flash_output.txt
