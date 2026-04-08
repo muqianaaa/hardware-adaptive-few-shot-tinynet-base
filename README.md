@@ -64,6 +64,7 @@ Per-device ablation results:
 - Python `>=3.11`
 - Recommended: a dedicated virtual environment
 - PyTorch environment for training and evaluation
+- `torchvision` for downloading CIFAR-10
 - Optional CUDA-enabled PyTorch for faster training
 - Keil MDK / uVision if you want to rebuild the STM32 firmware
 
@@ -76,6 +77,12 @@ pip install -r requirements.txt
 ## Quick start
 
 ### 1. Run the synthetic MCU pipeline
+
+Download CIFAR-10 first:
+
+```bash
+python scripts/download_cifar10.py
+```
 
 Main experiment config:
 
